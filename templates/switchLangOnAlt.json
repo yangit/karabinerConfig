@@ -1,0 +1,177 @@
+{
+    "description": "switch language on ALT, set symbolLayer variable",
+    "manipulators": [
+        {
+            "type": "basic",
+            "conditions": [
+                {
+                    "type": "input_source_if",
+                    "input_sources": [
+                        {
+                            "language": "ru"
+                        }
+                    ]
+                }
+            ],
+            "from": {
+                "key_code": "left_option",
+                "modifiers": {
+                    "optional": "command"
+                }
+            },
+            "to": [
+                {
+                    "key_code": "vk_none"
+                },
+                {
+                    "select_input_source": {
+                        "language": "en"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 1
+                    }
+                }
+            ],
+            "to_after_key_up": [
+                {
+                    "select_input_source": {
+                        "language": "ru"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 0
+                    }
+                }
+            ]
+        },
+        {
+            "type": "basic",
+            "conditions": [
+                {
+                    "type": "input_source_if",
+                    "input_sources": [
+                        {
+                            "language": "en"
+                        }
+                    ]
+                }
+            ],
+            "from": {
+                "key_code": "left_option",
+                "modifiers": {
+                    "optional": "command"
+                }
+            },
+            "to": [
+                {
+                    "key_code": "vk_none"
+                },
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 1
+                    }
+                }
+            ],
+            "to_after_key_up": [
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 0
+                    }
+                }
+            ]
+        },
+        {
+            "type": "basic",
+            "conditions": [
+                {
+                    "type": "input_source_if",
+                    "input_sources": [
+                        {
+                            "language": "ru"
+                        }
+                    ]
+                }
+            ],
+            "from": {
+                "key_code": "right_option",
+                "modifiers": {
+                    "optional": "command"
+                }
+            },
+            "to": [
+                {
+                    "key_code": "vk_none"
+                },
+                {
+                    "select_input_source": {
+                        "language": "en"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 1
+                    }
+                }
+            ],
+            "to_after_key_up": [
+                {
+                    "select_input_source": {
+                        "language": "ru"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 0
+                    }
+                }
+            ]
+        },
+        {
+            "type": "basic",
+            "conditions": [
+                {
+                    "type": "input_source_if",
+                    "input_sources": [
+                        {
+                            "language": "en"
+                        }
+                    ]
+                }
+            ],
+            "from": {
+                "key_code": "right_option",
+                "modifiers": {
+                    "optional": "command"
+                }
+            },
+            "to": [
+                {
+                    "key_code": "vk_none"
+                },
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 1
+                    }
+                }
+            ],
+            "to_after_key_up": [
+                {
+                    "set_variable": {
+                        "name": "symbolLayer",
+                        "value": 0
+                    }
+                }
+            ]
+        }
+    ]
+}

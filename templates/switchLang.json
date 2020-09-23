@@ -1,0 +1,31 @@
+{
+    "description": "switch language with one button",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": 106
+            },
+            "to": [
+                {
+                    "select_input_source": {
+                        "language": "ru"
+                    }
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": 105
+            },
+            "to": [
+                {
+                    "select_input_source": {
+                        "language": "en"
+                    }
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}

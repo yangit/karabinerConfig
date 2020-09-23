@@ -1,0 +1,27 @@
+{
+    "description": "Test chain",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "a"
+            },
+            "to": [
+                {
+                    "key_code": "s"
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "s"
+            },
+            "to": [
+                {
+                    "key_code": "f"
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}
