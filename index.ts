@@ -164,4 +164,5 @@ const rules = {
 log('done');
 log(JSON.stringify(rules.killSymbols, null, '\t'));
 const simpleModifications = readJson('simpleModifications.json');
-insertRulesIntoProdConfig({ rules, simpleModifications });
+const functionKeys = readJson('functionKeys.json');
+insertRulesIntoProdConfig({ rules, simpleModifications, functionKeys });

@@ -1,4 +1,5 @@
 import fp from 'lodash/fp';
+import _ from 'lodash';
 import fs from 'fs';
 
 type From = {
@@ -98,31 +99,41 @@ export const unpackBoth = ([fromString, toString]: string[]): Manipulator => ({
 export const insertRulesIntoProdConfig = ({
   rules,
   simpleModifications,
+  functionKeys,
 }: {
   rules: any;
   simpleModifications: any;
+  functionKeys: any;
 }) => {
-  const emptyPattern = '"rules": []';
-  const simpleModificationsPattern = /"simple_modifications": \[\]/g;
+  // const emptyPattern = '"rules": []';
+  // const simpleModificationsPattern = /"simple_modifications": \[\]/g;
   fp.flow([
     readFile,
-    (where: string) =>
-      where
-        .replace(
-          emptyPattern,
-          `"rules":${JSON.stringify(Object.values(rules), null, '\t')}`,
-        )
-        .replace(
-          simpleModificationsPattern,
-          `"simple_modifications":${JSON.stringify(
-            simpleModifications,
-            null,
-            '\t',
-          )}`,
-        ),
-    // log,
+    (templateString) =>
+      _.template(templateString)(
+        fp.mapValues(JSON.stringify)({
+          rules: Object.values(rules),
+          simpleModifications,
+          functionKeys,
+        }),
+      ),
+    // (where: string) =>
+    //   where
+    //     .replace(
+    //       emptyPattern,
+    //       `"rules":${JSON.stringify(Object.values(rules), null, '\t')}`,
+    //     )
+    //     .replace(
+    //       simpleModificationsPattern,
+    //       `"simple_modifications":${JSON.stringify(
+    //         simpleModifications,
+    //         null,
+    //         '\t',
+    //       )}`,
+    //     ),
+    log,
     (string: string) => {
       fs.writeFileSync('/Users/y/.config/karabiner/karabiner.json', string);
     },
-  ])('empty.json');
+  ])('empty.tpl');
 };
