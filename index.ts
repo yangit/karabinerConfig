@@ -47,8 +47,53 @@ const simpleSymbols = [
   ['slash', '6+shift'],
 ];
 
+const workmanLetters = [
+  ['q', 'q'],
+  ['w', 'd'],
+  ['e', 'r'],
+  ['r', 'w'],
+  ['t', 'b'],
+  ['y', 'j'],
+  ['u', 'f'],
+  ['i', 'u'],
+  ['o', 'p'],
+  ['p', 'vk_none'],
+
+  ['a', 'a'],
+  ['s', 's'],
+  ['d', 'h'],
+  ['f', 't'],
+  ['g', 'g'],
+
+  ['h', 'y'],
+  ['j', 'n'],
+  ['k', 'e'],
+  ['l', 'o'],
+  ['semicolon', 'i'],
+
+  ['z', 'z'],
+  ['x', 'x'],
+  ['c', 'm'],
+  ['v', 'c'],
+  ['b', 'v'],
+  ['n', 'k'],
+  ['m', 'l'],
+];
 const rules = {
   switchLang: readJson('switchLang.json'),
+  addWorkman: {
+    description: 'add workman',
+    manipulators: workmanLetters
+      .map(unpackBoth)
+      .map(addType)
+      .map(
+        addCondition({
+          type: 'variable_if',
+          name: 'workman',
+          value: 1,
+        }),
+      ),
+  },
   killSymbols: {
     description: 'kill old symbols',
     manipulators: simpleSymbols

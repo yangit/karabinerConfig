@@ -3,12 +3,18 @@
     "manipulators": [
         {
             "from": {
-                "key_code": 106
+                "key_code": "slash"
             },
             "to": [
                 {
                     "select_input_source": {
                         "language": "ru"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "workman",
+                        "value": 0
                     }
                 }
             ],
@@ -16,12 +22,37 @@
         },
         {
             "from": {
-                "key_code": 105
+                "key_code": "grave_accent_and_tilde"
             },
             "to": [
                 {
                     "select_input_source": {
                         "language": "en"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "workman",
+                        "value": 0
+                    }
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "equal_sign"
+            },
+            "to": [
+                {
+                    "select_input_source": {
+                        "language": "en"
+                    }
+                },
+                {
+                    "set_variable": {
+                        "name": "workman",
+                        "value": 1
                     }
                 }
             ],
