@@ -71,7 +71,15 @@
                         {
                             "type": "basic",
                             "from": {
-                                "key_code": "hyphen"
+                                "key_code": "hyphen",
+                                    "modifiers": {
+                                        "optional": [
+                                            "shift",
+                                            "command",
+                                            "option",
+                                            "caps_lock"
+                                        ]
+                                    }
                             },
                             "to": [
                                 {
