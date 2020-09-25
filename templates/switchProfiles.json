@@ -1,0 +1,16 @@
+{
+    "description": "switch profiles",
+    "manipulators": [
+        {
+            "type": "basic",
+            "from": {
+                "key_code": "hyphen"
+            },
+            "to": [
+                {
+                    "shell_command": "'/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'No changes profile'"
+                }
+            ]
+        }
+    ]
+}

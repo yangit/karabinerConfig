@@ -95,6 +95,12 @@ export const unpackBoth = ([fromString, toString]: string[]): Manipulator => ({
   from: unpackFrom(fromString),
   to: unpackTo(toString),
 });
+export const manipulatorsToRules = (name: string) => (
+  manipulators: Manipulator[],
+) => ({
+  description: name,
+  manipulators,
+});
 
 export const insertRulesIntoProdConfig = ({
   rules,

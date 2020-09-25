@@ -1,3 +1,4 @@
+import fp from 'lodash/fp';
 import {
   log,
   readJson,
@@ -5,6 +6,7 @@ import {
   addType,
   addModifier,
   addCondition,
+  manipulatorsToRules,
   insertRulesIntoProdConfig,
 } from './util';
 
@@ -79,21 +81,40 @@ const workmanLetters = [
   ['n', 'k'],
   ['m', 'l'],
 ];
+const vimArrows = [
+  ['j', 'left_arrow'],
+  ['k', 'down_arrow'],
+  ['l', 'up_arrow'],
+  ['semicolon', 'right_arrow'],
+];
 const rules = {
+  switchProfiles: readJson('switchProfiles.json'),
+  vimLayer: readJson('vimLayer.json'),
+  disableArrows: fp.flow([
+    fp.map(([, target]) => [target, 'vk_none']),
+    fp.map(unpackBoth),
+    fp.map(addType),
+    fp.map(
+      fp.set(['from', 'modifiers', 'optional'], ['command', 'shift', 'option']),
+    ),
+    manipulatorsToRules('disableArrows'),
+  ])(vimArrows),
+  vimArrows: fp.flow([
+    fp.map(unpackBoth),
+    fp.map(addType),
+    fp.map(
+      addCondition({
+        type: 'variable_if',
+        name: 'vimLayer',
+        value: 1,
+      }),
+    ),
+    fp.map(
+      fp.set(['from', 'modifiers', 'optional'], ['command', 'shift', 'option']),
+    ),
+    manipulatorsToRules('vimArrows'),
+  ])(vimArrows),
   switchLang: readJson('switchLang.json'),
-  addWorkman: {
-    description: 'add workman',
-    manipulators: workmanLetters
-      .map(unpackBoth)
-      .map(addType)
-      .map(
-        addCondition({
-          type: 'variable_if',
-          name: 'workman',
-          value: 1,
-        }),
-      ),
-  },
   killSymbols: {
     description: 'kill old symbols',
     manipulators: simpleSymbols
@@ -185,7 +206,7 @@ const rules = {
       )
       .map(
         addModifier({
-          path: ['to', 0, 'modifiers'],
+          path: ['to', '0', 'modifiers'],
           modifier: 'command',
         }),
       ),
@@ -199,6 +220,19 @@ const rules = {
         addCondition({
           type: 'variable_if',
           name: 'symbolLayer',
+          value: 1,
+        }),
+      ),
+  },
+  addWorkman: {
+    description: 'add workman',
+    manipulators: workmanLetters
+      .map(unpackBoth)
+      .map(addType)
+      .map(
+        addCondition({
+          type: 'variable_if',
+          name: 'workman',
           value: 1,
         }),
       ),
