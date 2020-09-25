@@ -3,37 +3,17 @@
     "manipulators": [
         {
             "from": {
-                "key_code": "a",
-                "modifiers": {
-                    "optional": [
-                        "shift",
-                        "command",
-                        "option"
-                    ]
-                }
+                "key_code": 231
             },
-            "to_if_held_down": [
+            "to": [
+                {
+                    "key_code": "vk_none"
+                },
                 {
                     "set_variable": {
                         "name": "vimLayer",
                         "value": 1
                     }
-                }
-            ],
-            "parameters": {
-                "basic.to_if_alone_timeout_milliseconds": 200,
-                "basic.to_if_held_down_threshold_milliseconds": 200
-            },
-            "to_if_alone": [
-                {
-                    "key_code": "a"
-                }
-            ],
-            "conditions": [
-                {
-                    "type": "variable_if",
-                    "name": "symbolLayer",
-                    "value": 0
                 }
             ],
             "to_after_key_up": [
