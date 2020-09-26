@@ -87,6 +87,14 @@ const vimArrows = [
   ['l', 'up_arrow'],
   ['semicolon', 'right_arrow'],
 ];
+const windowArrows = [
+  ['f', 'tab+command'],
+  ['r', 'tab+command+shift'],
+  ['d', 'grave_accent_and_tilde+command'],
+  ['e', 'grave_accent_and_tilde+command+shift'],
+  ['s', 'tab+control'],
+  ['w', 'tab+control+shift'],
+];
 const rules = {
   switchProfiles: readJson('switchProfiles.json'),
   vimLayer: readJson('vimLayer.json'),
@@ -99,6 +107,18 @@ const rules = {
     ),
     manipulatorsToRules('disableArrows'),
   ])(vimArrows),
+  windowArrows: fp.flow([
+    fp.map(unpackBoth),
+    fp.map(addType),
+    fp.map(
+      addCondition({
+        type: 'variable_if',
+        name: 'vimLayer',
+        value: 1,
+      }),
+    ),
+    manipulatorsToRules('windowArrows'),
+  ])(windowArrows),
   vimArrows: fp.flow([
     fp.map(unpackBoth),
     fp.map(addType),

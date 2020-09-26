@@ -72,11 +72,12 @@ export const addConditionUS = addCondition({
 });
 
 export const unpackTo = (string: string) => {
-  const [key_code, modifier] = string.split('+');
-  const outKey: { key_code: string; modifiers?: string[] } = { key_code };
-  if (modifier) {
-    outKey.modifiers = [modifier];
-  }
+  const [key_code, ...modifiers] = string.split('+');
+  const outKey: { key_code: string; modifiers?: string[] } = {
+    key_code,
+    modifiers,
+  };
+
   return [outKey];
 };
 export const unpackFrom = (string: string): From => {
