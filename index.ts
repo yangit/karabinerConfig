@@ -135,9 +135,67 @@ const rules = {
     manipulatorsToRules('vimArrows'),
   ])(vimArrows),
   switchLang: readJson('switchLang.json'),
+  superSymbols: {
+    description: 'superSymbols',
+    manipulators: simpleSymbols
+      .map(unpackBoth)
+      .map(addType)
+      .map(
+        addCondition({
+          type: 'variable_if',
+          name: 'symbolLayer',
+          value: 1,
+        }),
+      )
+      .map(
+        addModifier({
+          path: ['from', 'modifiers', 'mandatory'],
+          modifier: 'command',
+        }),
+      )
+      .map(
+        addModifier({
+          path: ['to', '0', 'modifiers'],
+          modifier: 'command',
+        }),
+      ),
+  },
+  symbols: {
+    description: 'symbols',
+    manipulators: simpleSymbols
+      .map(unpackBoth)
+      .map(addType)
+      .map(
+        addCondition({
+          type: 'variable_if',
+          name: 'symbolLayer',
+          value: 1,
+        }),
+      ),
+  },
+  addWorkman: {
+    description: 'add workman',
+    manipulators: workmanLetters
+      .map(unpackBoth)
+      .map(addType)
+      .map(
+        addModifier({
+          path: ['from', 'modifiers', 'optional'],
+          modifier: 'shift',
+        }),
+      )
+      .map(
+        addCondition({
+          type: 'variable_if',
+          name: 'workman',
+          value: 1,
+        }),
+      ),
+  },
   killSymbols: {
     description: 'kill old symbols',
     manipulators: simpleSymbols
+      .filter(([, target]) => target !== 'semicolon')
       .map(([, target]) => [target, 'vk_none'])
       .map(unpackBoth)
       .map(addType)
@@ -202,57 +260,6 @@ const rules = {
         addCondition({
           type: 'variable_if',
           name: 'symbolLayer',
-          value: 1,
-        }),
-      ),
-  },
-  superSymbols: {
-    description: 'superSymbols',
-    manipulators: simpleSymbols
-      .map(unpackBoth)
-      .map(addType)
-      .map(
-        addCondition({
-          type: 'variable_if',
-          name: 'symbolLayer',
-          value: 1,
-        }),
-      )
-      .map(
-        addModifier({
-          path: ['from', 'modifiers', 'mandatory'],
-          modifier: 'command',
-        }),
-      )
-      .map(
-        addModifier({
-          path: ['to', '0', 'modifiers'],
-          modifier: 'command',
-        }),
-      ),
-  },
-  symbols: {
-    description: 'symbols',
-    manipulators: simpleSymbols
-      .map(unpackBoth)
-      .map(addType)
-      .map(
-        addCondition({
-          type: 'variable_if',
-          name: 'symbolLayer',
-          value: 1,
-        }),
-      ),
-  },
-  addWorkman: {
-    description: 'add workman',
-    manipulators: workmanLetters
-      .map(unpackBoth)
-      .map(addType)
-      .map(
-        addCondition({
-          type: 'variable_if',
-          name: 'workman',
           value: 1,
         }),
       ),
