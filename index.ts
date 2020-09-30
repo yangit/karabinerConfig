@@ -96,17 +96,17 @@ const windowArrows = [
   ['w', 'tab+control+shift'],
 ];
 const rules = {
-  switchProfiles: readJson('switchProfiles.json'),
+  // switchProfiles: readJson('switchProfiles.json'),
   vimLayer: readJson('vimLayer.json'),
-  disableArrows: fp.flow([
-    fp.map(([, target]) => [target, 'vk_none']),
-    fp.map(unpackBoth),
-    fp.map(addType),
-    fp.map(
-      fp.set(['from', 'modifiers', 'optional'], ['command', 'shift', 'option']),
-    ),
-    manipulatorsToRules('disableArrows'),
-  ])(vimArrows),
+  // disableArrows: fp.flow([
+  //   fp.map(([, target]) => [target, 'vk_none']),
+  //   fp.map(unpackBoth),
+  //   fp.map(addType),
+  //   fp.map(
+  //     fp.set(['from', 'modifiers', 'optional'], ['command', 'shift', 'option']),
+  //   ),
+  //   manipulatorsToRules('disableArrows'),
+  // ])(vimArrows),
   windowArrows: fp.flow([
     fp.map(unpackBoth),
     fp.map(addType),

@@ -65,30 +65,7 @@
                     "basic.to_if_held_down_threshold_milliseconds": 500,
                     "mouse_motion_to_scroll.speed": 100
                 },
-                "rules": [{
-                    "description": "switch profiles",
-                    "manipulators": [
-                        {
-                            "type": "basic",
-                            "from": {
-                                "key_code": "hyphen",
-                                    "modifiers": {
-                                        "optional": [
-                                            "shift",
-                                            "command",
-                                            "option",
-                                            "caps_lock"
-                                        ]
-                                    }
-                            },
-                            "to": [
-                                {
-                                    "shell_command": "'/Library/Application Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli' --select-profile 'Yan profile'"
-                                }
-                            ]
-                        }
-                    ]
-                }]
+                "rules": []
             },
             "devices": [
                 {

@@ -112,8 +112,6 @@ export const insertRulesIntoProdConfig = ({
   simpleModifications: any;
   functionKeys: any;
 }) => {
-  // const emptyPattern = '"rules": []';
-  // const simpleModificationsPattern = /"simple_modifications": \[\]/g;
   fp.flow([
     readFile,
     (templateString) =>
@@ -124,20 +122,6 @@ export const insertRulesIntoProdConfig = ({
           functionKeys,
         }),
       ),
-    // (where: string) =>
-    //   where
-    //     .replace(
-    //       emptyPattern,
-    //       `"rules":${JSON.stringify(Object.values(rules), null, '\t')}`,
-    //     )
-    //     .replace(
-    //       simpleModificationsPattern,
-    //       `"simple_modifications":${JSON.stringify(
-    //         simpleModifications,
-    //         null,
-    //         '\t',
-    //       )}`,
-    //     ),
     log,
     (string: string) => {
       fs.writeFileSync('/Users/y/.config/karabiner/karabiner.json', string);
