@@ -22,5 +22,21 @@
         "to": {
             "key_code": "left_control"
         }
+    },
+    {
+        "from": {
+            "key_code": "grave_accent_and_tilde"
+        },
+        "to": {
+            "key_code": "escape"
+        }
+    },
+    {
+        "from": {
+            "key_code": "escape"
+        },
+        "to": {
+            "key_code": "vk_none"
+        }
     }
 ]

@@ -9,6 +9,7 @@ import {
   manipulatorsToRules,
   insertRulesIntoProdConfig,
 } from './util';
+import switchLang from './templates/switchLang';
 
 const simpleSymbols = [
   ['a', 'open_bracket'],
@@ -49,38 +50,38 @@ const simpleSymbols = [
   ['slash', '6+shift'],
 ];
 
-const workmanLetters = [
-  ['q', 'q'],
-  ['w', 'd'],
-  ['e', 'r'],
-  ['r', 'w'],
-  ['t', 'b'],
-  ['y', 'j'],
-  ['u', 'f'],
-  ['i', 'u'],
-  ['o', 'p'],
-  ['p', 'vk_none'],
+// const workmanLetters = [
+//   ['q', 'q'],
+//   ['w', 'd'],
+//   ['e', 'r'],
+//   ['r', 'w'],
+//   ['t', 'b'],
+//   ['y', 'j'],
+//   ['u', 'f'],
+//   ['i', 'u'],
+//   ['o', 'p'],
+//   ['p', 'vk_none'],
 
-  ['a', 'a'],
-  ['s', 's'],
-  ['d', 'h'],
-  ['f', 't'],
-  ['g', 'g'],
+//   ['a', 'a'],
+//   ['s', 's'],
+//   ['d', 'h'],
+//   ['f', 't'],
+//   ['g', 'g'],
 
-  ['h', 'y'],
-  ['j', 'n'],
-  ['k', 'e'],
-  ['l', 'o'],
-  ['semicolon', 'i'],
+//   ['h', 'y'],
+//   ['j', 'n'],
+//   ['k', 'e'],
+//   ['l', 'o'],
+//   ['semicolon', 'i'],
 
-  ['z', 'z'],
-  ['x', 'x'],
-  ['c', 'm'],
-  ['v', 'c'],
-  ['b', 'v'],
-  ['n', 'k'],
-  ['m', 'l'],
-];
+//   ['z', 'z'],
+//   ['x', 'x'],
+//   ['c', 'm'],
+//   ['v', 'c'],
+//   ['b', 'v'],
+//   ['n', 'k'],
+//   ['m', 'l'],
+// ];
 const vimArrows = [
   ['j', 'left_arrow'],
   ['k', 'down_arrow'],
@@ -88,6 +89,8 @@ const vimArrows = [
   ['semicolon', 'right_arrow'],
 ];
 const windowArrows = [
+  ['q', 'open_bracket+command'],
+  ['a', 'close_bracket+command'],
   ['f', 'tab+command'],
   ['r', 'tab+command+shift'],
   ['d', 'grave_accent_and_tilde+command'],
@@ -134,7 +137,7 @@ const rules = {
     ),
     manipulatorsToRules('vimArrows'),
   ])(vimArrows),
-  switchLang: readJson('switchLang.json'),
+  switchLang,
   superSymbols: {
     description: 'superSymbols',
     manipulators: simpleSymbols
@@ -173,25 +176,25 @@ const rules = {
         }),
       ),
   },
-  addWorkman: {
-    description: 'add workman',
-    manipulators: workmanLetters
-      .map(unpackBoth)
-      .map(addType)
-      .map(
-        addModifier({
-          path: ['from', 'modifiers', 'optional'],
-          modifier: 'shift',
-        }),
-      )
-      .map(
-        addCondition({
-          type: 'variable_if',
-          name: 'workman',
-          value: 1,
-        }),
-      ),
-  },
+  // addWorkman: {
+  //   description: 'add workman',
+  //   manipulators: workmanLetters
+  //     .map(unpackBoth)
+  //     .map(addType)
+  //     .map(
+  //       addModifier({
+  //         path: ['from', 'modifiers', 'optional'],
+  //         modifier: 'shift',
+  //       }),
+  //     )
+  //     .map(
+  //       addCondition({
+  //         type: 'variable_if',
+  //         name: 'workman',
+  //         value: 1,
+  //       }),
+  //     ),
+  // },
   killSymbols: {
     description: 'kill old symbols',
     manipulators: simpleSymbols

@@ -27,6 +27,12 @@ export const log = (arg: any) => {
 
 export const getPath = (fileName: string) => `./templates/${fileName}`;
 
+// export const createChord = () => { };
+
+// export const createLayer = ({ name, keys }: { name: string }) => {
+//   console.log({ name, enter, exit, keys });
+// };
+
 export const readFile = fp.flow([
   getPath,
   fs.readFileSync,
